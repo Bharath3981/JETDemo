@@ -1,0 +1,85 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="">
+  <h3>Simple Form</h3>
+  <div>
+    <oj-label-value label-edge="start" label-width="25%">
+      <oj-label slot="label" for="input">Name</oj-label>
+      <oj-input-text
+        slot="value"
+        id="input"
+        value=""
+        readonly="[[isReadOnly]]"
+      ></oj-input-text>
+    </oj-label-value>
+
+    <oj-label-value label-edge="start" label-width="25%">
+      <oj-label slot="label" id="radiosetlabel">Gender</oj-label>
+      <oj-radioset
+        slot="value"
+        id="radioSetId"
+        labelled-by="radiosetlabel"
+        readonly="[[isReadOnly]]"
+        value="male"
+        class="oj-choice-direction-row"
+      >
+        <oj-option id="blueopt" value="male">Male</oj-option>
+        <oj-option id="greenopt" value="female">Female</oj-option>
+      </oj-radioset>
+    </oj-label-value>
+
+    <oj-label-value label-edge="start" label-width="25%">
+      <oj-label slot="label" for="datepicker">DOB</oj-label>
+      <oj-input-date
+        slot="value"
+        id="datepicker"
+        value=""
+        readonly="[[isReadOnly]]"
+      ></oj-input-date>
+    </oj-label-value>
+
+    <div class="oj-flex">
+      <div class="oj-flex-item oj-md-3">
+        <oj-label
+          slot="label"
+          for="textarea"
+          label-edge="end"
+          style="display: inline-block; float: right; padding-right: 1.5rem"
+          >Editor</oj-label
+        >
+      </div>
+      <div class="oj-flex-item oj-md-9">
+        <div :style="[[isReadOnly()? {display: 'none'}: {display: 'block'}]]">
+          <div id="editor" style="height: 200px">
+            <!-- <p>Hello World!</p>
+            <p>Some initial <strong>bold</strong> text</p>
+            <p><br /></p> -->
+          </div>
+        </div>
+        <div :style="[[!isReadOnly()? {display: 'none'}: {display: 'block'}]]">
+          <oj-bind-text value="[[editorText]]"></oj-bind-text>
+        </div>
+      </div>
+    </div>
+
+    <div class="oj-flex" style="padding-top: 1.5rem">
+      <div class="oj-flex-item oj-md-3"></div>
+      <div class="oj-flex-item oj-md-9">
+        <oj-bind-if test="[[!isReadOnly()]]">
+          <oj-button id="size_button2" on-oj-action="[[EditOrPreview]]">
+            Preview
+          </oj-button>
+        </oj-bind-if>
+
+        <oj-bind-if test="[[isReadOnly()]]">
+          <oj-button id="size_button2" on-oj-action="[[EditOrPreview]]">
+            Edit
+          </oj-button>
+        </oj-bind-if>
+      </div>
+    </div>
+  </div>
+</div>
